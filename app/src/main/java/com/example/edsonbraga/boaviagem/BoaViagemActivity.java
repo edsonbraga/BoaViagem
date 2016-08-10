@@ -28,7 +28,7 @@ public class BoaViagemActivity extends Activity {
         String usuarioInformado = usuario.getText().toString();
         String senhaInformada = senha.getText().toString();
 
-        if ("edson".equals(usuarioInformado) && "123".equals(senhaInformada))
+        if ("teste".equals(usuarioInformado) && "123".equals(senhaInformada))
         {
 //            TODO usar banco SQLite
             startActivity(new Intent(this, DashboardActivity.class));

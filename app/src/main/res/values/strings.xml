@@ -25,6 +25,8 @@
     <string name="gastei">Gastei</string>
     <string name="categoria">Categoria</string>
     <string name="sair">Sair</string>
+    <string name="remover_viagem">Remover viagem</string>
+    <string name="remover">Remover</string>
     <string-array name="categoria_gasto">
         <item>Alimentação</item>
         <item>Combustível</item>
