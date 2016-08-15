@@ -7,10 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by Edson Braga on 24/07/2016.
@@ -32,8 +28,11 @@ public class DashboardActivity extends Activity {
                 startActivity(new Intent(this, GastoActivity.class));
                 break;
             case R.id.minhas_viagens:
-                startActivity(new Intent(this, ViagemListActivity.class));
+                //startActivity(new Intent(this, ViagemListActivity.class));
+                startActivity(new Intent(this, AnotacaoActivity.class));
                 break;
+            case R.id.configuracoes:
+                startActivity(new Intent(this, TesteTelaActivity.class));
         }
         /*TextView textView = (TextView) view;
         String opcao = "Opção: " + textView.getText().toString();

@@ -6,12 +6,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
+import com.example.edsonbraga.boaviagem.domain.Anotacao;
 import com.example.edsonbraga.boaviagem.fragment.ViagemListFragment;
 
 /**
  * Created by edson.braga on 12/08/2016.
  */
-public class AnotacaoActivity extends FragmentActivity{
+public class AnotacaoActivity extends FragmentActivity
+                              implements AnotacaoListener{
 
     private boolean tablet = true;
 
@@ -34,6 +36,21 @@ public class AnotacaoActivity extends FragmentActivity{
             transaction.addToBackStack(null);
             transaction.commit();
         }
+
+    }
+
+    @Override
+    public void viagemSelecionada(Bundle bundle) {
+
+    }
+
+    @Override
+    public void anotacaoSelecionada(Anotacao anotacao) {
+
+    }
+
+    @Override
+    public void novaAnotacao() {
 
     }
 }

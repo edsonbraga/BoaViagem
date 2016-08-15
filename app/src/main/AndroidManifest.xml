@@ -22,6 +22,8 @@
         <activity android:name=".GastoActivity"/>
         <activity android:name=".ViagemListActivity"/>
         <activity android:name=".GastoListActivity"/>
+        <activity android:name=".AnotacaoActivity"/>
+        <activity android:name=".TesteTelaActivity"/>
     </application>
 
 </manifest>
