@@ -1,7 +1,7 @@
 package com.example.edsonbraga.boaviagem.fragment;
 
-import android.app.ListFragment;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
+import com.example.edsonbraga.boaviagem.AnotacaoListener;
+import com.example.edsonbraga.boaviagem.Constantes;
 import com.example.edsonbraga.boaviagem.R;
 import com.example.edsonbraga.boaviagem.domain.Anotacao;
 
@@ -21,6 +23,8 @@ import java.util.List;
 public class AnotacaoListFragment extends ListFragment
         implements AdapterView.OnItemClickListener, View.OnClickListener{
 
+    private AnotacaoListener callback;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.lista_anotacoes, container, false);
@@ -29,17 +33,27 @@ public class AnotacaoListFragment extends ListFragment
     @Override
     public void onStart() {
         super.onStart();
-        List<Anotacao> anotacoes = listarAnotacoes();
-
-        ArrayAdapter<Anotacao> adapter =
-                new ArrayAdapter<Anotacao>(getActivity(),
-                android.R.layout.simple_list_item_1,anotacoes);
-
-        setListAdapter(adapter);
-        getListView().setOnItemClickListener(this);
-
         Button button = (Button) getActivity().findViewById(R.id.nova_anotacao);
         button.setOnClickListener(this);
+        getListView().setOnItemClickListener(this);
+        listarAnotacoesPorViagem(getArguments());
+    }
+
+    public void listarAnotacoesPorViagem(Bundle bundle) {
+        if(bundle != null &&
+                bundle.containsKey(Constantes.VIAGEM_SELECIONADA)){
+
+            //utilize a informacao do bundle para buscar
+            // as anotacoes no banco de dados
+            List<Anotacao> anotacoes = listarAnotacoes();
+
+            ArrayAdapter<Anotacao> adapter =
+                    new ArrayAdapter<Anotacao>(getActivity(),
+                            android.R.layout.simple_list_item_1,
+                            anotacoes);
+
+            setListAdapter(adapter);
+        }
     }
 
     private List<Anotacao> listarAnotacoes() {
@@ -57,11 +71,12 @@ public class AnotacaoListFragment extends ListFragment
 
     @Override
     public void onClick(View view) {
-
+        callback.novaAnotacao();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Anotacao anotacao = (Anotacao) getListAdapter().getItem(position);
+        callback.anotacaoSelecionada(anotacao);
     }
 }

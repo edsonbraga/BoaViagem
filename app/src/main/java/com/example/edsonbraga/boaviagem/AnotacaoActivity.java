@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.example.edsonbraga.boaviagem.domain.Anotacao;
+import com.example.edsonbraga.boaviagem.fragment.AnotacaoFragment;
+import com.example.edsonbraga.boaviagem.fragment.AnotacaoListFragment;
 import com.example.edsonbraga.boaviagem.fragment.ViagemListFragment;
 
 /**
@@ -41,16 +43,61 @@ public class AnotacaoActivity extends FragmentActivity
 
     @Override
     public void viagemSelecionada(Bundle bundle) {
+        FragmentManager manager = getSupportFragmentManager();
+        AnotacaoListFragment fragment;
 
+        if(tablet){
+            fragment = (AnotacaoListFragment) manager.findFragmentById(R.id.fragment_anotacao);
+            fragment.listarAnotacoesPorViagem(bundle);
+
+        }else{
+            fragment = new AnotacaoListFragment();
+            fragment.setArguments(bundle);
+
+            manager.beginTransaction()
+                    .replace(R.id.fragment_unico, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     @Override
     public void anotacaoSelecionada(Anotacao anotacao) {
+        FragmentManager manager = getSupportFragmentManager();
+        AnotacaoFragment fragment;
 
+        if(tablet){
+            fragment = (AnotacaoFragment) manager
+                    .findFragmentById(R.id.fragment_anotacao);
+            fragment.prepararEdicao(anotacao);
+
+        }else{
+            fragment = new AnotacaoFragment();
+            fragment.setAnotacao(anotacao);
+
+            manager.beginTransaction()
+                    .replace(R.id.fragment_unico, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     @Override
     public void novaAnotacao() {
+        FragmentManager manager = getSupportFragmentManager();
+        AnotacaoFragment fragment;
 
+        if(tablet){
+            fragment = (AnotacaoFragment) manager
+                    .findFragmentById(R.id.fragment_anotacao);
+            fragment.criarNovaAnotacao();
+
+        }else{
+            fragment = new AnotacaoFragment();
+            manager.beginTransaction()
+                    .replace(R.id.fragment_unico, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 }
