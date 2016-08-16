@@ -1,5 +1,6 @@
 package com.example.edsonbraga.boaviagem.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -67,6 +68,12 @@ public class AnotacaoListFragment extends ListFragment
             anotacoes.add(anotacao);
         }
         return anotacoes;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        callback = (AnotacaoListener) activity;
     }
 
     @Override

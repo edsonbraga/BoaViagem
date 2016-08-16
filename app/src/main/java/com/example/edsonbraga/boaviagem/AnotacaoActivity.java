@@ -47,7 +47,7 @@ public class AnotacaoActivity extends FragmentActivity
         AnotacaoListFragment fragment;
 
         if(tablet){
-            fragment = (AnotacaoListFragment) manager.findFragmentById(R.id.fragment_anotacao);
+            fragment = (AnotacaoListFragment) manager.findFragmentById(R.id.fragment_anotacoes);
             fragment.listarAnotacoesPorViagem(bundle);
 
         }else{
